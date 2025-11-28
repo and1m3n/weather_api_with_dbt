@@ -23,6 +23,7 @@ services:
     environment:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@db:5432/airflow_db
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      _PIP_ADDITIONAL_REQUIREMENTS: python-dotenv requests 
     volumes:
       - ./airflow/dags:/opt/airflow/dags
     depends_on:
