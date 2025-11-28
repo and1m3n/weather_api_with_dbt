@@ -1,6 +1,6 @@
 import psycopg2
 import os
-from api_request import mock_feth_data
+from api_request import fetch_data
 from dotenv import load_dotenv
 
 def connect_to_bd():
@@ -69,7 +69,7 @@ def insert_records(conn,data):
 def main():
     conn = None       
     try:
-        data = mock_feth_data()
+        data = fetch_data()
         conn = connect_to_bd()
         crate_table(conn)
         insert_records(conn,data)
