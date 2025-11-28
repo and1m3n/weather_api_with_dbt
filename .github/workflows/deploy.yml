@@ -18,16 +18,20 @@ jobs:
           HOST: ${{ secrets.HOST }}
           USER: ${{ secrets.USER }}
           PASSWORD: ${{ secrets.PASSWORD }}
-          POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
-          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
         run: |
           cat > ./airflow/dags/.env << EOF
-          POSTGRES_HOST=$POSTGRES_HOST
-          POSTGRES_USER=$POSTGRES_USER
-          POSTGRES_PASSWORD=$POSTGRES_PASSWORD
-          WEATHER_API_KEY=$WEATHER_API_KEY
+          host=$DB_HOST
+          port=$DB_PORT
+          dbname=$DB_NAME
+          dbuser=$DB_USER
+          dbpassword=$DB_PASSWORD
+          api_key=$WEATHER_API_KEY
           EOF
           
           sshpass -p "$PASSWORD" rsync -avz \

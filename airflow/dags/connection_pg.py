@@ -66,6 +66,7 @@ def insert_records(conn,data):
         print(f'Error inserting data into db: {e}')
 
 def main():
+    conn = None       
     try:
         data = mock_feth_data()
         conn = connect_to_bd()
