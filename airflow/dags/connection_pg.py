@@ -73,6 +73,6 @@ def main():
     except Exception as e:
         print(f'error as e:{e}')
     finally:
-        if  'conn' in locals():
+        if conn is not None:
             conn.close()
             print('Database connetion closed.')
