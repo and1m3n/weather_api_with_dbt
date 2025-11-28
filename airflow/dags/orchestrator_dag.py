@@ -2,7 +2,7 @@ import sys
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime,timedelta
-from api_request import main
+from connection_pg import main
 
 
 default_args = {
