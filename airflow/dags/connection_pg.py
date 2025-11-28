@@ -65,6 +65,7 @@ def insert_records(conn,data):
     except psycopg2.Error as e:
         print(f'Error inserting data into db: {e}')
 
+
 def main():
     conn = None       
     try:
