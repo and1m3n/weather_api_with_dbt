@@ -16,7 +16,8 @@ def connect_to_bd():
         )
         return conn
     except psycopg2.Error as e:
-        print('error conection to DB :{e}')
+        print(f'error conection to DB :{e}')
+        raise
 
 def crate_table(conn):
     print('Creating table if not exists...')
