@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 def connect_to_bd():
     print("Connecting to the PostgresSQL db")
     try:
-        load_dotenv()
+        load_dotenv('/opt/airflow/dags/.env') 
         conn = psycopg2.connect(
             host=os.getenv("host"),
             port=os.getenv("port"),
