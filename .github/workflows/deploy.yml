@@ -13,9 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install sshpass
-        run: sudo apt-get install -y sshpass
-
       - name: Deploy DAGs with .env
         env:
           HOST: ${{ secrets.HOST }}
