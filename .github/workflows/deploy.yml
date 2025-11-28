@@ -5,11 +5,11 @@ on:
     branches:
       - main
     paths:
-      - 'dags/**'
+      - 'airflow/dags/**'
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
 
@@ -21,21 +21,18 @@ jobs:
           HOST: ${{ secrets.HOST }}
           USER: ${{ secrets.USER }}
           PASSWORD: ${{ secrets.PASSWORD }}
-          # Твои секреты для DAG'ов
           POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
           POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
         run: |
-          # Создаём .env файл
-          cat > ./dags/.env << EOF
+          cat > ./airflow/dags/.env << EOF
           POSTGRES_HOST=$POSTGRES_HOST
           POSTGRES_USER=$POSTGRES_USER
           POSTGRES_PASSWORD=$POSTGRES_PASSWORD
           WEATHER_API_KEY=$WEATHER_API_KEY
           EOF
           
-          # Копируем dags/ вместе с .env
           sshpass -p "$PASSWORD" rsync -avz \
             -e "ssh -o StrictHostKeyChecking=no" \
-            ./dags/ $USER@$HOST:/home//home/and1m3n/weather_proj/airflow/dags/
+            ./airflow/dags/ $USER@$HOST:/home/and1m3n/weather_proj/airflow/dags/
