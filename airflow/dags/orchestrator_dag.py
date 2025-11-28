@@ -19,6 +19,6 @@ dag = DAG(
 
 with dag:
     task1= PythonOperator(
-        task_id='example_task',
+        task_id='insert_data_task',
         python_callable=main
     )
